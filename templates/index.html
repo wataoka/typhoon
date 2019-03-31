@@ -1,4 +1,26 @@
 {% extends "layout.html" %}
 {% block content %}
-hello
+<h1>台風偏差値</h1>
+<hr>
+<ul>
+    {% for year in years %}
+        <li>
+            <h3>{{ year }}年</h3>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>名前</th>
+                    <th>最低気圧</th>
+                </tr>
+                {% for typhoon in data[year] %}
+                <tr>
+                    <th>台風{{ typhoon['number'] }}号</th>
+                    <th>{{ typhoon['name'] }}</th>
+                    <th>{{ typhoon['pressure'] }}hPa</th>
+                </tr>
+                {% endfor %}
+            </table>
+        </li>
+    {% endfor %}
+</ul>
 {% endblock %}
