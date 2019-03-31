@@ -1,9 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>台風偏差値</h1>
-<hr>
 <ul>
-    {% for year in years %}
+    {% for year in range(1999, 2020)[::-1] %}
         <li>
             <h3>{{ year }}年</h3>
             <table>
@@ -12,12 +10,15 @@
                     <th>名前</th>
                     <th>最低気圧</th>
                 </tr>
-                {% for typhoon in data[year] %}
+                {% for typhoon in data %}
+                {% if typhoon['year'] == year %}
                 <tr>
                     <th>台風{{ typhoon['number'] }}号</th>
                     <th>{{ typhoon['name'] }}</th>
                     <th>{{ typhoon['pressure'] }}hPa</th>
+                    <th><button onclick="location.href='{{ url_for('deviation', id=typhoon['id']) }}'">偏差値を計算</button></th>
                 </tr>
+                {% endif %}
                 {% endfor %}
             </table>
         </li>
