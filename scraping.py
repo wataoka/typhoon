@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 data = []
 id = 1
 
+cnt = 0
 for year in range(1999, 2020):
     url = "https://ja.wikipedia.org/wiki/" + str(year) + "%E5%B9%B4%E3%81%AE%E5%8F%B0%E9%A2%A8"
 
@@ -54,6 +55,22 @@ for year in range(1999, 2020):
                 if typhoon['year'] == year and typhoon['number'] == number:
                     typhoon['pressure'] = table_bottom[index+16 : index+19]
             number += 1
+
+    number = 1
+    image_list = soup.find_all("table", attrs={"class": "infobox"}, style="width: 22em")
+    image_list = list(map(lambda x: x.find_all("img", alt="", decoding="async"), image_list))
+    for image in image_list:
+        count = 0
+        for i in range(len(data)):
+            if data[i]['year'] == year:
+                count += 1
+        if number > count:
+            break
+
+        for typhoon in data:
+            if typhoon['year'] == year and typhoon['number'] == number:
+                typhoon['image'] = str(image[0])
+        number += 1
 
 f = open('data/test.json', 'w')
 json.dump(data, f)

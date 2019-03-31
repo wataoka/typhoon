@@ -1,8 +1,22 @@
-<h2>{{ typhoon['year'] }}年 台風{{ typhoon['number'] }}号 「{{ typhoon['name'] }}」</h2>
-偏差値: {{ dev }}
-
+{% extends "layout.html" %}
+{% block content %}
+<h1>{{ typhoon['year'] }}年 台風{{ typhoon['number'] }}号 「{{ typhoon['name'] }}」</h1>
+<br>
+<br>
+<div class="row">
+    <div class="col-6">
+        {{ typhoon['image'] | safe }}
+    </div>
+    <div class="col-6">
+        <br>
+        <br>
+        <br>
+        <h3>偏差値: {{ dev }}</h3>
+    </div>
+</div>
+<br>
 <div class="twitter">
     　<a href="//twitter.com/share?text={{ typhoon['year'] }}年 台風{{ typhoon['number'] }}号「{{typhoon['name']}}」は偏差値{{ dev }}です。【台風偏差値】" class="twitter-share-button" data-text="" data-url="" data-lang="ja">
-     Tweet
      </a>
 </div>
+{% endblock %}

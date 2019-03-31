@@ -4,6 +4,10 @@
         <meta charset="utf-8">
         <title>台風偏差値</title>
 
+        <!-- CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+
         <!-- Twitterカード -->
         <meta name="twitter:card" content="summary" />
         <meta property="og:title" content="台風偏差値" />
@@ -11,11 +15,16 @@
         <meta property="og:image" content="https://cdn.vox-cdn.com/thumbor/TF_S0iSkeBukIrNvo4LwusXWsDI=/0x0:1021x628/1220x813/filters:focal(340x264:502x426):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/61892999/Screen_Shot_2018_10_24_at_12.59.53_PM.0.png" />
     </head>
     <body>
-        {% block content %}
-        <!-- Contents -->
+        {% include "partial/navbar.html" %}
+        <div class="container">
+            {% block content %}
+            <!-- Contents -->
 
-        {% endblock %}
-        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+            {% endblock %}
+        </div>
+        <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </body>
 </html>
