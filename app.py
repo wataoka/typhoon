@@ -25,4 +25,4 @@ def deviation(id):
     return render_template('/deviation.html', typhoon=typhoon, dev=dev)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(address='0.0.0.0', debug=False)
