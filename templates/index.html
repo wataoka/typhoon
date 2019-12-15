@@ -7,20 +7,20 @@
             <table class="table">
                 <thead class="thead-light">
                     <tr>
-                        <th></th>
+                        <th>号</th>
                         <th>名前</th>
-                        <th>最低気圧</th>
                         <th></th>
                     </tr>
                 </thead>
                 {% for typhoon in data %}
                 {% if typhoon['year'] == year %}
+                {% if 'pressure' in typhoon.keys() %}
                 <tr>
                     <th>台風{{ typhoon['number'] }}号</th>
                     <th>{{ typhoon['name'] }}</th>
-                    <th>{{ typhoon['pressure'] }}hPa</th>
-                    <th><button class="btn btn-link" onclick="location.href='{{ url_for('deviation', id=typhoon['id']) }}'">偏差値を計算</button></th>
+                    <th><button class="btn btn-link" onclick="location.href='{{ url_for('deviation', id=typhoon['id']) }}'">偏差値</button></th>
                 </tr>
+                {% endif %}
                 {% endif %}
                 {% endfor %}
             </table>

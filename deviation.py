@@ -15,6 +15,12 @@ def get_deviation(x):
 def get_pressures():
     with open('./data/data.json') as f:
         json_object = json.load(f)
-    pressures = list(map(lambda x: int(x['pressure']), json_object))
+    
+    pressures = []
+    for x in json_object:
+        if 'pressure' in x.keys():
+            pressures.append(int(x['pressure']))
+        else:
+            print(x['year'], x['name'])
     pressures = np.array(pressures)
     return pressures
